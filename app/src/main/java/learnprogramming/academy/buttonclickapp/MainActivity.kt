@@ -13,8 +13,6 @@ private const val TAG = "MainActivity"
 private const val TEXT_CONTENTS = "TextContent"
 
 class MainActivity : AppCompatActivity() {
-    //    private var userInput: EditText? = null
-//    private var button: Button? = null
     private var textView: TextView? = null
     private var numTimesClicked = 0
 
@@ -28,30 +26,22 @@ class MainActivity : AppCompatActivity() {
         textView = findViewById<TextView>(R.id.textView)
         textView?.text = ""
         textView?.movementMethod = ScrollingMovementMethod()
+
         userInput.setText("")
 
         button.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 Log.d(TAG, "onClick: called")
-//                numTimesClicked+=1
-//                textView?.append("The button got tapped $numTimesClicked time")
-//                if (numTimesClicked!=1){
-//                    textView?.append("s\n")
-//                } else {
-//                    textView?.append("\n")
-//                }
-                if (userInput.text.toString() == "") {
+                if (userInput.text.toString() != "") {
                     numTimesClicked++
-                    textView?.append(("Button click counter : $numTimesClicked\n"))
+                    textView?.append(userInput.text.toString())
+                    textView?.append("- Button click counter : $numTimesClicked\n")
+                    userInput.setText("")
+
                 } else {
                     numTimesClicked++
-                    textView?.append(userInput.text)
-                    textView?.append("- Button click counter : $numTimesClicked\n")
-                    //userInput.text.clear()
-                    userInput.setText("")
+                    textView?.append(("Button click counter : $numTimesClicked\n"))
                 }
-
-
             }
         })
     }
@@ -65,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onRestoreInstanceState: called")
         super.onRestoreInstanceState(savedInstanceState)
         textView?.text = savedInstanceState?.getString(TEXT_CONTENTS, "")
+        numTimesClicked= savedInstanceState?.getInt("clicking",0)
     }
 
     override fun onRestart() {
@@ -86,6 +77,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onSaveInstanceState: called")
         super.onSaveInstanceState(outState)
         outState?.putString(TEXT_CONTENTS, textView?.text.toString())
+        outState?.putInt("clicking", numTimesClicked)
     }
 
     override fun onStop() {
