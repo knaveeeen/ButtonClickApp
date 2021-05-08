@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background"
     tools:context=".MainActivity">
 
     <TextView
@@ -18,6 +19,7 @@
         android:fontFamily="monospace"
         android:scrollbars="vertical"
         android:text="TextView"
+        android:textColor="#F8F6F6"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,6 +39,7 @@
         android:fontFamily="monospace"
         android:inputType="textPersonName"
         android:text="Name"
+        android:textColor="#FDF8F8"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/button"
         app:layout_constraintEnd_toStartOf="@+id/button"
